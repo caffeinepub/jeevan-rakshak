@@ -1,0 +1,134 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-a-simulated-real-time-heart-rate-bpm-monitoring-panel-on-the-frontend-display-a-live-bpm-value-simulated-with-a-realistic-oscillating-value-between-60-100-bpm-allow-the-user-to-manually-set-the-bpm-value-for-testing-show-a-pulsing-heart-animation-that-speeds-up-or-slows-down-with-bpm",
+      "featureTitle": "Build a simulated real-time Heart Rate (BPM) monitoring panel on the frontend. Display a live BPM value (simulated with a realistic oscillating value between 60–100 BPM). Allow the user to manually set the BPM value for testing. Show a pulsing heart animation that speeds up or slows down with BPM.",
+      "files": [
+        "frontend/src/components/HeartRateMonitor.tsx",
+        "frontend/src/hooks/useHeartRateSimulation.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-critical-heart-rate-emergency-alert-flow-on-the-frontend-when-bpm-drops-to-0-or-below-40-trigger-a-loud-browser-audio-alarm-using-web-audio-api-display-a-full-screen-urgent-alert-overlay-in-hinglish-asking-kya-aap-theek-hain-kripya-screen-touch-karein-ya-haan-bolein-start-a-visible-10-second-countdown-timer-if-the-user-taps-clicks-or-presses-haan-within-10-seconds-dismiss-the-alarm-and-log-a-false-alarm-event-if-no-response-is-received-within-10-seconds-display-an-emergency-activated-screen-showing-a-message-that-ambulance-102-108-has-been-called-the-user-s-stored-medical-history-summary-and-a-note-that-live-location-has-been-shared",
+      "featureTitle": "Implement a critical heart rate emergency alert flow on the frontend. When BPM drops to 0 or below 40, trigger a loud browser audio alarm (using Web Audio API), display a full-screen urgent alert overlay in Hinglish asking: 'Kya aap theek hain? Kripya screen touch karein ya Haan bolein.' Start a visible 10-second countdown timer. If the user taps/clicks or presses 'Haan' within 10 seconds, dismiss the alarm and log a 'False Alarm' event. If no response is received within 10 seconds, display an 'Emergency Activated' screen showing: a message that ambulance (102/108) has been called, the user's stored medical history summary, and a note that live location has been shared.",
+      "files": [
+        "frontend/src/components/EmergencyActivatedScreen.tsx",
+        "frontend/src/components/EmergencyAlertOverlay.tsx",
+        "frontend/src/hooks/useEmergencyAlert.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-medicine-reminder-management-screen-where-users-can-add-edit-and-delete-medicine-entries-name-dosage-scheduled-times-implement-a-frontend-reminder-engine-at-scheduled-times-display-a-soft-modal-notification-in-hinglish-saying-namaste-aapki-medicine-name-ka-samay-ho-gaya-hai-kya-main-aapke-liye-pani-ka-reminder-bhi-set-karun-with-le-li-taken-and-baad-mein-later-buttons-if-the-user-confirms-mark-the-dose-as-taken-if-no-confirmation-repeat-the-reminder-every-5-minutes-if-the-user-actively-declines-show-a-warm-hinglish-explanation-of-why-that-medicine-is-important-pulled-from-a-brief-description-field-on-the-medicine-entry",
+      "featureTitle": "Build a Medicine Reminder management screen where users can add, edit, and delete medicine entries (name, dosage, scheduled times). Implement a frontend reminder engine: at scheduled times, display a soft modal notification in Hinglish saying 'Namaste, aapki [Medicine Name] ka samay ho gaya hai. Kya main aapke liye pani ka reminder bhi set karun?' with 'Le Li (Taken)' and 'Baad Mein (Later)' buttons. If the user confirms, mark the dose as taken. If no confirmation, repeat the reminder every 5 minutes. If the user actively declines, show a warm Hinglish explanation of why that medicine is important (pulled from a brief description field on the medicine entry).",
+      "files": [
+        "frontend/src/components/MedicineDoseLog.tsx",
+        "frontend/src/components/MedicineReminderModal.tsx",
+        "frontend/src/hooks/useMedicineReminders.ts",
+        "frontend/src/pages/MedicineManagement.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-symptom-checker-health-chat-panel-on-the-frontend-the-panel-presents-as-a-warm-conversational-hinglish-chat-interface-named-jeevan-rakshak-first-greet-the-user-and-confirm-they-are-a-patient-seeking-help-then-ask-about-their-symptoms-using-quick-reply-chips-fever-bukhar-cough-khansi-pain-dard-weakness-kamzori-other-based-on-selected-symptoms-display-a-brief-initial-care-suggestion-in-hinglish-e-g-rest-hydration-warm-water-always-append-a-disclaimer-main-ek-ai-hoon-doctor-se-milna-sabse-zaroori-hai-store-symptom-check-sessions-in-the-backend",
+      "featureTitle": "Build a Symptom Checker / Health Chat panel on the frontend. The panel presents as a warm, conversational Hinglish chat interface named 'Jeevan Rakshak'. First, greet the user and confirm they are a patient seeking help. Then ask about their symptoms using quick-reply chips (Fever / Bukhar, Cough / Khansi, Pain / Dard, Weakness / Kamzori, Other). Based on selected symptoms, display a brief initial care suggestion in Hinglish (e.g., rest, hydration, warm water). Always append a disclaimer: 'Main ek AI hoon — doctor se milna sabse zaroori hai.' Store symptom check sessions in the backend.",
+      "files": [
+        "frontend/src/hooks/useSymptomChat.ts",
+        "frontend/src/pages/HealthChat.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-user-profile-setup-screen-where-the-user-can-fill-in-their-medical-profile-name-age-emergency-contact-medical-history-chronic-conditions-allergies-and-profile-photo-optional-this-data-should-be-saved-to-the-backend-and-displayed-on-the-main-dashboard-header",
+      "featureTitle": "Build a User Profile setup screen where the user can fill in their medical profile: name, age, emergency contact, medical history (chronic conditions, allergies), and profile photo (optional). This data should be saved to the backend and displayed on the main dashboard header.",
+      "files": [
+        "frontend/src/components/DashboardHeader.tsx",
+        "frontend/src/pages/ProfileSetup.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-and-apply-a-warm-caring-visual-theme-throughout-the-entire-app-inspired-by-health-safety-and-compassion-use-deep-teal-and-soft-warm-amber-saffron-as-the-primary-palette-no-blue-purple-typography-should-be-large-and-readable-for-elderly-users-minimum-16px-body-20px-headings-rounded-cards-gentle-gradients-and-clear-iconography-the-overall-feel-should-evoke-trust-warmth-and-calm-urgency-like-a-reliable-medical-companion",
+      "featureTitle": "Design and apply a warm, caring visual theme throughout the entire app — inspired by health, safety, and compassion. Use deep teal and soft warm amber/saffron as the primary palette (no blue/purple). Typography should be large and readable for elderly users (minimum 16px body, 20px+ headings). Rounded cards, gentle gradients, and clear iconography. The overall feel should evoke trust, warmth, and calm urgency — like a reliable medical companion.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

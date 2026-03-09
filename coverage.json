@@ -1,0 +1,229 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T06:43:16.303Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 6,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a backend data model and API to store a user's medical profile, including: full name, age, emergency contact number, medical history (chronic conditions, allergies), and a list of scheduled medicines (name, dosage, schedule times).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Build a simulated real-time Heart Rate (BPM) monitoring panel on the frontend. Display a live BPM value (simulated with a realistic oscillating value between 60–100 BPM). Allow the user to manually set the BPM value for testing. Show a pulsing heart animation that speeds up or slows down with BPM.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/HeartRateMonitor.tsx",
+          "frontend/src/hooks/useHeartRateSimulation.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/HeartRateMonitor.tsx",
+          "frontend/src/hooks/useHeartRateSimulation.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement a critical heart rate emergency alert flow on the frontend. When BPM drops to 0 or below 40, trigger a loud browser audio alarm (using Web Audio API), display a full-screen urgent alert overlay in Hinglish asking: 'Kya aap theek hain? Kripya screen touch karein ya Haan bolein.' Start a visible 10-second countdown timer. If the user taps/clicks or presses 'Haan' within 10 seconds, dismiss the alarm and log a 'False Alarm' event. If no response is received within 10 seconds, display an 'Emergency Activated' screen showing: a message that ambulance (102/108) has been called, the user's stored medical history summary, and a note that live location has been shared.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/EmergencyAlertOverlay.tsx",
+          "frontend/src/components/EmergencyActivatedScreen.tsx",
+          "frontend/src/hooks/useEmergencyAlert.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/EmergencyAlertOverlay.tsx",
+          "frontend/src/components/EmergencyActivatedScreen.tsx",
+          "frontend/src/hooks/useEmergencyAlert.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Build a Medicine Reminder management screen where users can add, edit, and delete medicine entries (name, dosage, scheduled times). Implement a frontend reminder engine: at scheduled times, display a soft modal notification in Hinglish saying 'Namaste, aapki [Medicine Name] ka samay ho gaya hai. Kya main aapke liye pani ka reminder bhi set karun?' with 'Le Li (Taken)' and 'Baad Mein (Later)' buttons. If the user confirms, mark the dose as taken. If no confirmation, repeat the reminder every 5 minutes. If the user actively declines, show a warm Hinglish explanation of why that medicine is important (pulled from a brief description field on the medicine entry).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/MedicineManagement.tsx",
+          "frontend/src/components/MedicineReminderModal.tsx",
+          "frontend/src/hooks/useMedicineReminders.ts",
+          "frontend/src/components/MedicineDoseLog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/MedicineManagement.tsx",
+          "frontend/src/components/MedicineReminderModal.tsx",
+          "frontend/src/hooks/useMedicineReminders.ts",
+          "frontend/src/components/MedicineDoseLog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Build a Symptom Checker / Health Chat panel on the frontend. The panel presents as a warm, conversational Hinglish chat interface named 'Jeevan Rakshak'. First, greet the user and confirm they are a patient seeking help. Then ask about their symptoms using quick-reply chips (Fever / Bukhar, Cough / Khansi, Pain / Dard, Weakness / Kamzori, Other). Based on selected symptoms, display a brief initial care suggestion in Hinglish (e.g., rest, hydration, warm water). Always append a disclaimer: 'Main ek AI hoon — doctor se milna sabse zaroori hai.' Store symptom check sessions in the backend.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/HealthChat.tsx",
+          "frontend/src/hooks/useSymptomChat.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/HealthChat.tsx",
+          "frontend/src/hooks/useSymptomChat.ts"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Build a User Profile setup screen where the user can fill in their medical profile: name, age, emergency contact, medical history (chronic conditions, allergies), and profile photo (optional). This data should be saved to the backend and displayed on the main dashboard header.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ProfileSetup.tsx",
+          "frontend/src/components/DashboardHeader.tsx",
+          "frontend/src/hooks/useUserProfile.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProfileSetup.tsx",
+          "frontend/src/components/DashboardHeader.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Design and apply a warm, caring visual theme throughout the entire app — inspired by health, safety, and compassion. Use deep teal and soft warm amber/saffron as the primary palette (no blue/purple). Typography should be large and readable for elderly users (minimum 16px body, 20px+ headings). Rounded cards, gentle gradients, and clear iconography. The overall feel should evoke trust, warmth, and calm urgency — like a reliable medical companion.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/dashboard-bg.dim_1440x900.png",
+    "frontend/public/assets/generated/emergency-bg.dim_1440x900.png",
+    "frontend/public/assets/generated/jeevan-rakshak-logo.dim_256x256.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/DashboardHeader.tsx",
+    "frontend/src/components/EmergencyActivatedScreen.tsx",
+    "frontend/src/components/EmergencyAlertOverlay.tsx",
+    "frontend/src/components/HeartRateMonitor.tsx",
+    "frontend/src/components/MedicineDoseLog.tsx",
+    "frontend/src/components/MedicineReminderModal.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useEmergencyAlert.ts",
+    "frontend/src/hooks/useHeartRateSimulation.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useMedicineReminders.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useSymptomChat.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/Dashboard.tsx",
+    "frontend/src/pages/HealthChat.tsx",
+    "frontend/src/pages/MedicineManagement.tsx",
+    "frontend/src/pages/ProfileSetup.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

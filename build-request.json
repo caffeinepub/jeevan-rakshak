@@ -1,0 +1,176 @@
+{
+  "kind": "build_request",
+  "title": "Jeevan Rakshak — AI Life-Saver & Health Assistant",
+  "projectName": "Jeevan Rakshak",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a backend data model and API to store a user's medical profile, including: full name, age, emergency contact number, medical history (chronic conditions, allergies), and a list of scheduled medicines (name, dosage, schedule times).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "user ki Live Location aur medical history bhejo",
+          "User ke schedule ke mutabik unhe pyar se dawa yaad dilao"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend actor exposes functions to create, read, and update a user medical profile.",
+        "Medicine list supports multiple entries with name, dosage, and scheduled time.",
+        "Medical history field stores free-text conditions and allergies.",
+        "Emergency contact number is stored and retrievable."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build a simulated real-time Heart Rate (BPM) monitoring panel on the frontend. Display a live BPM value (simulated with a realistic oscillating value between 60–100 BPM). Allow the user to manually set the BPM value for testing. Show a pulsing heart animation that speeds up or slows down with BPM.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Tumhe real-time dhadkan (BPM) ka data mil raha hai"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A heart rate panel is visible on the main dashboard.",
+        "BPM value updates every 2 seconds with a simulated realistic reading.",
+        "A pulsing heart icon animates in sync with the BPM.",
+        "User can manually input a BPM value to simulate critical conditions."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement a critical heart rate emergency alert flow on the frontend. When BPM drops to 0 or below 40, trigger a loud browser audio alarm (using Web Audio API), display a full-screen urgent alert overlay in Hinglish asking: 'Kya aap theek hain? Kripya screen touch karein ya Haan bolein.' Start a visible 10-second countdown timer. If the user taps/clicks or presses 'Haan' within 10 seconds, dismiss the alarm and log a 'False Alarm' event. If no response is received within 10 seconds, display an 'Emergency Activated' screen showing: a message that ambulance (102/108) has been called, the user's stored medical history summary, and a note that live location has been shared.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Agar Heart Rate 0 ho jaye ya 40 se niche gir jaye, toh turant 10 second ka loud alarm bajao",
+          "Agar 10 second tak koi response nahi aata, toh turant Ambulance (102/108) ko automatic call lagao"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Alarm triggers immediately when BPM is 0 or below 40.",
+        "A loud repeating audio tone plays during the alert (Web Audio API).",
+        "A full-screen overlay shows the Hinglish distress question and a 10-second countdown.",
+        "Tapping anywhere on the overlay or pressing 'Haan' within 10 seconds dismisses the alarm.",
+        "If countdown expires with no interaction, an 'Emergency Activated' screen is shown with ambulance numbers (102/108), medical history summary, and location-shared confirmation message.",
+        "Emergency events are logged and retrievable from the backend."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a Medicine Reminder management screen where users can add, edit, and delete medicine entries (name, dosage, scheduled times). Implement a frontend reminder engine: at scheduled times, display a soft modal notification in Hinglish saying 'Namaste, aapki [Medicine Name] ka samay ho gaya hai. Kya main aapke liye pani ka reminder bhi set karun?' with 'Le Li (Taken)' and 'Baad Mein (Later)' buttons. If the user confirms, mark the dose as taken. If no confirmation, repeat the reminder every 5 minutes. If the user actively declines, show a warm Hinglish explanation of why that medicine is important (pulled from a brief description field on the medicine entry).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "User ke schedule ke mutabik unhe pyar se dawa yaad dilao",
+          "Jab tak user confirm na kare ki dawa le li hai, har 5 minute mein pyar se yaad dilate raho",
+          "Agar user mana kare, toh unhe samjhao ki ye dawa unki sehat ke liye kyun zaroori hai"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Medicine management screen allows adding, editing, and deleting medicine entries.",
+        "Each medicine entry has: name, dosage, schedule times, and an importance description.",
+        "At the scheduled time, a reminder modal appears with the Hinglish message.",
+        "Reminder repeats every 5 minutes until the user confirms 'Le Li (Taken)'.",
+        "If the user taps 'Baad Mein', the reminder reappears after 5 minutes.",
+        "If user declines with a 'Nahi Lunga' (reject) option, show the importance explanation in a warm tone.",
+        "Dose confirmations are stored and displayed in a daily medicine log."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build a Symptom Checker / Health Chat panel on the frontend. The panel presents as a warm, conversational Hinglish chat interface named 'Jeevan Rakshak'. First, greet the user and confirm they are a patient seeking help. Then ask about their symptoms using quick-reply chips (Fever / Bukhar, Cough / Khansi, Pain / Dard, Weakness / Kamzori, Other). Based on selected symptoms, display a brief initial care suggestion in Hinglish (e.g., rest, hydration, warm water). Always append a disclaimer: 'Main ek AI hoon — doctor se milna sabse zaroori hai.' Store symptom check sessions in the backend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Sirf insaanon se baat karo. Pehle confirm karo ki saamne bimar vyakti hi hai",
+          "Agar koi bimar lage, toh unse lakshan (symptoms) pucho",
+          "Main ek AI hoon, doctor se baat karna sabse behtar hai"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chat interface opens with a warm Hinglish greeting from Jeevan Rakshak.",
+        "First message confirms the user is a patient.",
+        "Symptom quick-reply chips are shown: Bukhar, Khansi, Dard, Kamzori, Aur (Other).",
+        "Selecting a symptom triggers a relevant care suggestion in Hinglish.",
+        "Every response ends with the AI disclaimer.",
+        "Symptom sessions (symptoms selected + timestamp) are stored in the backend."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Build a User Profile setup screen where the user can fill in their medical profile: name, age, emergency contact, medical history (chronic conditions, allergies), and profile photo (optional). This data should be saved to the backend and displayed on the main dashboard header.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "user ki Live Location aur medical history bhejo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Profile setup screen has fields for name, age, emergency contact number, conditions, and allergies.",
+        "Profile is persisted in the backend.",
+        "Dashboard header shows the user's name and a summary badge (e.g., 'Diabetic | BP Patient').",
+        "Emergency contact is displayed on the Emergency Activated screen."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Design and apply a warm, caring visual theme throughout the entire app — inspired by health, safety, and compassion. Use deep teal and soft warm amber/saffron as the primary palette (no blue/purple). Typography should be large and readable for elderly users (minimum 16px body, 20px+ headings). Rounded cards, gentle gradients, and clear iconography. The overall feel should evoke trust, warmth, and calm urgency — like a reliable medical companion.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Tumhara lehza (Tone) ek sache dost aur zimmedar nurse jaisa hona chahiye—naram, dhairya wala aur fikar karne wala"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Deep teal and warm saffron/amber palette is consistently applied across all screens.",
+        "All body text is at least 16px; headings 20px or larger.",
+        "Cards use rounded corners and subtle gradients.",
+        "App name 'Jeevan Rakshak' appears prominently with a health/heart icon in the header.",
+        "No blue or purple tones used as primary colors."
+      ]
+    }
+  ],
+  "constraints": [
+    "Automatic phone calls and real GPS location sharing are not technically possible in a browser app — simulate these in the UI with clear visual confirmations (show 'Calling 108...' and 'Location Shared' messages).",
+    "All Motoko logic must remain in a single main actor file.",
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui.",
+    "All user-facing text (chat messages, reminders, alerts) must be in Hinglish (Hindi written in Latin/Devanagari script as appropriate)."
+  ],
+  "nonGoals": [
+    "Real telephony or SMS integration (e.g., actual 102/108 calls or Twilio).",
+    "Real GPS geolocation tracking.",
+    "Integration with real wearable heart rate sensors or Bluetooth devices.",
+    "Multi-user or caretaker dashboard — single user profile only for now.",
+    "AI/LLM integration for symptom analysis — use rule-based responses only."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Warm, caring health app logo — a stylized heart with a protective hand and subtle ECG line, in deep teal and saffron on a white background (jeevan-rakshak-logo.dim_256x256.png)",
+      "Gentle ambient dashboard background — soft radial gradient with faint heartbeat ECG line pattern in teal tones, calm and medical (dashboard-bg.dim_1440x900.png)",
+      "Emergency alert overlay background — deep red-orange urgent gradient with subtle pulse ripple effect (emergency-bg.dim_1440x900.png)"
+    ],
+    "edits": []
+  }
+}

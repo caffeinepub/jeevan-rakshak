@@ -1,0 +1,172 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Jeevan Rakshak — AI Life-Saver & Health Assistant Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Build a simulated real-time Heart Rate (BPM) monitoring panel with live BPM display, manual BPM input, and pulsing heart animation",
+      "acceptanceCriteria": [
+        "A heart rate panel is visible on the main dashboard.",
+        "BPM value updates every 2 seconds with a simulated realistic reading.",
+        "A pulsing heart icon animates in sync with the BPM.",
+        "User can manually input a BPM value to simulate critical conditions."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HeartRateMonitor.tsx",
+          "operation": "create",
+          "description": "Create a heart rate monitoring component that displays a live simulated BPM value (oscillating between 60-100 BPM, updating every 2 seconds). Include a pulsing heart SVG icon that animates at a rate synchronized with the BPM. Provide a manual BPM input field for testing critical conditions. Use deep teal and warm saffron colors from the theme. Export the current BPM value via a callback prop so parent components can trigger emergency alerts."
+        },
+        {
+          "path": "frontend/src/hooks/useHeartRateSimulation.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages simulated heart rate state and auto-updates every 2 seconds with realistic BPM values (60-100 range with small random variations). Support manual BPM override. Return current BPM, setter for manual BPM, and reset function."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement a critical heart rate emergency alert flow with audio alarm, full-screen overlay, countdown timer, and emergency activation screen",
+      "acceptanceCriteria": [
+        "Alarm triggers immediately when BPM is 0 or below 40.",
+        "A loud repeating audio tone plays during the alert (Web Audio API).",
+        "A full-screen overlay shows the Hinglish distress question and a 10-second countdown.",
+        "Tapping anywhere on the overlay or pressing 'Haan' within 10 seconds dismisses the alarm.",
+        "If countdown expires with no interaction, an 'Emergency Activated' screen is shown with ambulance numbers (102/108), medical history summary, and location-shared confirmation message.",
+        "Emergency events are logged and retrievable from the backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmergencyAlertOverlay.tsx",
+          "operation": "create",
+          "description": "Create a full-screen emergency alert overlay component that triggers when BPM is 0 or below 40. Display the Hinglish message 'Kya aap theek hain? Kripya screen touch karein ya Haan bolein.' Show a 10-second countdown timer prominently. Use the generated emergency background image at frontend/public/assets/generated/emergency-bg.dim_1440x900.png. Allow dismissal via tapping anywhere on the overlay or clicking a 'Haan' button. If no interaction occurs within 10 seconds, transition to the EmergencyActivatedScreen component. Use Web Audio API to play a loud repeating alarm tone (oscillating between 800Hz and 1200Hz) during the countdown."
+        },
+        {
+          "path": "frontend/src/components/EmergencyActivatedScreen.tsx",
+          "operation": "create",
+          "description": "Create an emergency activated screen that displays after the 10-second countdown expires. Show a prominent Hinglish message confirming emergency activation: 'Aapki emergency activate ho gayi hai.' Display ambulance contact numbers (102/108) with 'Calling 108...' simulation message. Fetch and display the user's medical profile summary (chronic conditions, allergies) using the getCallerUserProfile backend method. Show a confirmation message: 'Aapki location share kar di gayi hai.' Use deep teal and urgent red-orange accent colors. Provide a 'False Alarm' button to dismiss and log the event."
+        },
+        {
+          "path": "frontend/src/hooks/useEmergencyAlert.ts",
+          "operation": "create",
+          "description": "Create a custom hook that monitors BPM and triggers emergency alerts. Accept current BPM as input. When BPM is 0 or below 40, return alert state (active/inactive), countdown value, and handlers for dismissal and timeout. Manage Web Audio API alarm sound lifecycle (start/stop). Track whether emergency was activated or dismissed as false alarm."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build a Medicine Reminder management screen with add/edit/delete capabilities and a frontend reminder engine with Hinglish notifications",
+      "acceptanceCriteria": [
+        "Medicine management screen allows adding, editing, and deleting medicine entries.",
+        "Each medicine entry has: name, dosage, schedule times, and an importance description.",
+        "At the scheduled time, a reminder modal appears with the Hinglish message.",
+        "Reminder repeats every 5 minutes until the user confirms 'Le Li (Taken)'.",
+        "If the user taps 'Baad Mein', the reminder reappears after 5 minutes.",
+        "If user declines with a 'Nahi Lunga' (reject) option, show the importance explanation in a warm tone.",
+        "Dose confirmations are stored and displayed in a daily medicine log."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MedicineManagement.tsx",
+          "operation": "create",
+          "description": "Create a medicine management page that displays the user's medicine list fetched from getCallerUserProfile. Allow users to add new medicine entries via a form modal (name, dosage, schedule times as hour:minute, importance description, optional photo upload using ExternalBlob.fromBytes). Provide edit and delete actions for each medicine entry. On save, update the full medical profile using saveCallerUserProfile. Use deep teal cards with rounded corners and warm saffron accent buttons. Display medicines in a list with clear dosage and schedule information."
+        },
+        {
+          "path": "frontend/src/components/MedicineReminderModal.tsx",
+          "operation": "create",
+          "description": "Create a medicine reminder modal that appears at scheduled times. Display the Hinglish message: 'Namaste, aapki [Medicine Name] ka samay ho gaya hai. Kya main aapke liye pani ka reminder bhi set karun?' Provide two action buttons: 'Le Li (Taken)' and 'Baad Mein (Later)'. If user selects 'Le Li', mark the dose as taken and dismiss. If 'Baad Mein', close the modal and schedule a repeat in 5 minutes. Include a 'Nahi Lunga' link that shows the medicine's importance description in a warm Hinglish explanation overlay before dismissing. Use soft rounded cards with deep teal borders."
+        },
+        {
+          "path": "frontend/src/hooks/useMedicineReminders.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages medicine reminder scheduling. Accept the user's medicine list as input. Check current time against scheduled times and trigger reminder modals. Track dismissed reminders and schedule 5-minute repeats until confirmation. Maintain a daily medicine log of taken doses (medicine ID, timestamp, status). Return active reminder state, log entries, and handlers for confirming/dismissing reminders."
+        },
+        {
+          "path": "frontend/src/components/MedicineDoseLog.tsx",
+          "operation": "create",
+          "description": "Create a component that displays the daily medicine dose log. Show a timeline view of scheduled vs. taken medicines for the current day. Use checkmarks for taken doses and pending badges for missed/upcoming doses. Display in a clean card layout with deep teal accents."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build a Symptom Checker / Health Chat panel with warm Hinglish conversational interface, symptom quick-reply chips, and care suggestions",
+      "acceptanceCriteria": [
+        "Chat interface opens with a warm Hinglish greeting from Jeevan Rakshak.",
+        "First message confirms the user is a patient.",
+        "Symptom quick-reply chips are shown: Bukhar, Khansi, Dard, Kamzori, Aur (Other).",
+        "Selecting a symptom triggers a relevant care suggestion in Hinglish.",
+        "Every response ends with the AI disclaimer.",
+        "Symptom sessions (symptoms selected + timestamp) are stored in the backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HealthChat.tsx",
+          "operation": "create",
+          "description": "Create a health chat page with a warm Hinglish conversational interface named 'Jeevan Rakshak'. Display an initial greeting message: 'Namaste! Main Jeevan Rakshak hoon. Kya aap ek bimar vyakti hain jo madad chahte hain?' After user confirms (Yes button), show symptom quick-reply chips: Bukhar, Khansi, Dard, Kamzori, Aur (Other). When a symptom is selected, display a brief care suggestion in Hinglish (e.g., for Bukhar: 'Aaraam karein aur pani peete rahein. Thande kapde se seenk karein.'). Append the disclaimer: 'Main ek AI hoon — doctor se milna sabse zaroori hai.' Use a chat bubble layout with deep teal user messages and soft saffron assistant messages. Store symptom sessions using the recordSymptomSession backend method."
+        },
+        {
+          "path": "frontend/src/hooks/useSymptomChat.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages symptom chat state. Maintain conversation history (messages array). Provide functions to add user and assistant messages. Map selected symptoms to care suggestions (rule-based responses in Hinglish). Return chat messages, symptom selection handler, and session recording function."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Build a User Profile setup screen for medical profile entry with name, age, emergency contact, medical history, and optional photo",
+      "acceptanceCriteria": [
+        "Profile setup screen has fields for name, age, emergency contact number, conditions, and allergies.",
+        "Profile is persisted in the backend.",
+        "Dashboard header shows the user's name and a summary badge (e.g., 'Diabetic | BP Patient').",
+        "Emergency contact is displayed on the Emergency Activated screen."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProfileSetup.tsx",
+          "operation": "create",
+          "description": "Create a user profile setup page with a form for entering: full name (text), age (number), emergency contact number (text), chronic conditions (multi-line textarea or tag input), allergies (multi-line textarea or tag input), and an optional profile photo upload. Use the authorization component's pattern: check if getCallerUserProfile returns null, and if so, show this setup form. On submit, call saveCallerUserProfile with the entered MedicalProfile data. Use deep teal buttons and warm saffron accents. Ensure large, readable text (minimum 16px body, 20px+ headings) for elderly users. After successful save, redirect to the main dashboard."
+        },
+        {
+          "path": "frontend/src/components/DashboardHeader.tsx",
+          "operation": "create",
+          "description": "Create a dashboard header component that displays the user's name and a summary badge derived from their medical profile. Fetch the user profile using getCallerUserProfile. Show the user's name prominently alongside the Jeevan Rakshak logo (use the generated image at frontend/public/assets/generated/jeevan-rakshak-logo.dim_256x256.png). Generate a summary badge from chronic conditions (e.g., 'Diabetic | BP Patient'). Include a logout button using the authorization component's clear method. Use deep teal background with warm saffron accents."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create a custom hook that wraps getCallerUserProfile using React Query. Return user profile data, loading state, and refetch function. Handle null profile case to trigger profile setup flow. Verify the authorization component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Design and apply a warm, caring visual theme with deep teal and saffron palette, large readable typography, and compassionate design elements",
+      "acceptanceCriteria": [
+        "Deep teal and warm saffron/amber palette is consistently applied across all screens.",
+        "All body text is at least 16px; headings 20px or larger.",
+        "Cards use rounded corners and subtle gradients.",
+        "App name 'Jeevan Rakshak' appears prominently with a health/heart icon in the header.",
+        "No blue or purple tones used as primary colors."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles to implement the warm, caring theme. Define CSS custom properties for deep teal primary (#0D7377, #14FFEC variations) and warm saffron/amber accent (#FF9A56, #FFB84D) colors. Set minimum font sizes: body text 16px, headings 20px or larger. Apply rounded corners (border-radius: 12px+) to card classes. Add subtle gradient utilities for teal and saffron tones. Remove any existing blue or purple color definitions. Ensure high contrast for readability by elderly users."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration with the Jeevan Rakshak color palette. Add custom colors: 'teal-primary' (#0D7377), 'teal-light' (#14FFEC), 'saffron' (#FF9A56), 'amber-warm' (#FFB84D). Set default font size to 16px. Extend border radius values for rounded cards (xl: 12px, 2xl: 16px). Add gradient stops for teal and saffron gradients. Ensure no blue or purple tones in the extended palette."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a root layout component that wraps all pages and applies the caring theme. Use the generated dashboard background image at frontend/public/assets/generated/dashboard-bg.dim_1440x900.png as a soft background for main content areas. Include the DashboardHeader component at the top. Use deep teal and saffron accents consistently. Apply rounded cards with gentle gradients throughout child content. Ensure large, readable typography (16px+ body, 20px+ headings)."
+        }
+      ]
+    }
+  ]
+}

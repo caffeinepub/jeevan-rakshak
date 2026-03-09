@@ -1,0 +1,3 @@
+{
+  "frontend/src/App.tsx": "Main application component that handles authentication flow, routing between Dashboard/MedicineManagement/HealthChat pages, and orchestrates global state for heart rate simulation, emergency alerts, and medicine reminders. Includes LoginScreen, LoadingScreen, profile setup gating, emergency overlays, and the app footer with attribution."
+}
